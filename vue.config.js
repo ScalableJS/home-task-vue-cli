@@ -1,14 +1,14 @@
-const { defineConfig } = require("@vue/cli-service");
+const { defineConfig } = require('@vue/cli-service');
 
 module.exports = defineConfig({
   transpileDependencies: true,
   devServer: {
-    allowedHosts: "all",
+    allowedHosts: 'all',
   },
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     config.module
       .rule('images')
       .use('file-loader')
       .loader('image-webpack-loader');
-  }
+  },
 });
