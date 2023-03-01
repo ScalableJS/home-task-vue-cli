@@ -10,14 +10,6 @@ const props = defineProps({
     type: String,
     default: '',
   },
-  label: {
-    type: String,
-    required: true,
-  },
-  primary: {
-    type: Boolean,
-    default: false,
-  },
   size: {
     type: String,
     validator: function (value: string) {
@@ -33,15 +25,13 @@ const onChange = (event: Event) => {
 };
 
 const classes = computed(() => ({
-  'storybook-input': true,
-  'storybook-input--primary': props.primary,
-  'storybook-input--secondary': !props.primary,
-  [`storybook-input--${props.size || 'medium'}`]: true,
+  'net-input': true,
+  [`net-input--${props.size || 'medium'}`]: true,
 }));
 </script>
 
 <style lang="scss">
-.storybook-input {
+.net-input {
   &--large {
     font-size: 1rem;
     min-height: 40px;

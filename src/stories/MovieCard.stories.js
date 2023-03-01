@@ -14,7 +14,7 @@ export default {
       control: { type: 'text' },
     },
     genres: {
-      control: { type: 'text' },
+      control: { type: 'array' },
     },
   },
 };

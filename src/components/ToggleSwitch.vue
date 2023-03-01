@@ -33,12 +33,6 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  size: {
-    type: String,
-    validator: function (value: string) {
-      return ['small', 'medium', 'large'].indexOf(value) !== -1;
-    },
-  },
 });
 
 const emit = defineEmits(['update:modelValue']);
