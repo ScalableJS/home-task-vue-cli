@@ -1,4 +1,9 @@
-import { createApp } from 'vue';
+import { createApp, Plugin } from 'vue';
 import App from './App.vue';
+import { focus } from './plugin/focusPlugin';
 
-createApp(App).mount('#app');
+import './assets/main.scss';
+
+createApp(App)
+  .use(focus as Plugin)
+  .mount('#app');

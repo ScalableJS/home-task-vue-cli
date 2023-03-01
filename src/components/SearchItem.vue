@@ -1,6 +1,6 @@
 <template>
   <form :class="classes" action="" @submit.prevent="onSubmit">
-    <Input :size="size" type="search" v-model="data.searchValue" />
+    <Input :size="size" type="search" v-focus v-model="data.searchValue" />
     <Button :size="size" :label="label" :primary="primary" />
   </form>
 </template>
