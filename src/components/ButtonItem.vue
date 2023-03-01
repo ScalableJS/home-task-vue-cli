@@ -29,17 +29,17 @@ const emit = defineEmits(['change']);
 const onClick = emit('change');
 
 const classes = computed(() => ({
-  'storybook-button': true,
-  'storybook-button--primary': props.primary,
-  'storybook-button--secondary': !props.primary,
-  [`storybook-button--${props.size || 'medium'}`]: true,
+  'net-button': true,
+  'net-button--primary': props.primary,
+  'net-button--secondary': !props.primary,
+  [`net-button--${props.size || 'medium'}`]: true,
 }));
 </script>
 
 <style lang="scss" scoped>
 @import '../assets/_variables.scss';
 
-.storybook-button {
+.net-button {
   border: 0;
   border-radius: 5px;
   padding: 0 1em;

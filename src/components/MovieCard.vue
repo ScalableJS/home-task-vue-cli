@@ -8,6 +8,11 @@
     <div>
       {{ genreList }}
     </div>
+    <a
+      class="net-movie-cart__details"
+      :href="pathToMovieDetails"
+      @click.prevent
+    ></a>
   </section>
 </template>
 <script setup lang="ts">
@@ -30,11 +35,25 @@ const releaseDateYear = computed(() => {
 const genreList = computed(() => {
   return props.genres.join(', ');
 });
+const pathToMovieDetails = computed(() => {
+  return `/movie-details/${props.id}`;
+});
 </script>
 <style scoped lang="scss">
 .net-movie-cart {
   width: 300px;
   padding: 5px 20px;
+  position: relative;
+
+  .net-movie-cart__details {
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
 
   .net-movie-cart__img-wrapper {
     height: 455px;
