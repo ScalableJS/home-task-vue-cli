@@ -4,7 +4,6 @@ export default {
   title: 'Example/SearchSection',
   component: SearchSection,
   argTypes: {
-    onSubmit: {},
     size: {
       control: { type: 'select' },
       options: ['small', 'medium', 'large'],

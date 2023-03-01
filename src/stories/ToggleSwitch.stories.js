@@ -4,7 +4,9 @@ export default {
   title: 'Example/ToggleSwitch',
   component: Toggle,
   argTypes: {
-    onChange: {},
+    modelValue: {
+      type: 'boolean',
+    },
   },
 };
 
