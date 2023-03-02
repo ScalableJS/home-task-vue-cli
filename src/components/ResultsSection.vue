@@ -1,6 +1,6 @@
 <template>
   <section class="net-movie-list">
-    <div class="net-movie-list__no-films" v-if="!data.movies.length">
+    <div class="net-movie-list__no-films" v-if="!filteredMovies.length">
       No films found
     </div>
     <MovieCard v-for="movie in filteredMovies" v-bind="movie" :key="movie.id" />
@@ -17,7 +17,10 @@ const props = defineProps({
     type: String,
     defaultValue: '',
   },
-  searchBy: Number,
+  searchBy: {
+    type: Number,
+    defaultValue: 0,
+  },
 });
 
 const data = reactive({
@@ -25,7 +28,7 @@ const data = reactive({
 });
 
 const filteredMovies = computed(() => {
-  const searchBy: SearchBy = props.searchBy as SearchBy;
+  const searchBy: SearchBy = props.searchBy ?? 0;
   return data.movies.filter((movie) => {
     if (searchBy === SearchBy.Title) {
       return (

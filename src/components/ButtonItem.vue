@@ -1,6 +1,6 @@
 <template>
   <button :class="classes" @click="onClick">
-    {{ label }}
+    {{ props.label }}
   </button>
 </template>
 
@@ -43,6 +43,7 @@ const classes = computed(() => ({
   border: 0;
   border-radius: 5px;
   padding: 0 1em;
+  cursor: pointer;
 
   &--primary {
     background: $bg-color-primary;
