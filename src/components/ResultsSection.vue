@@ -10,7 +10,7 @@
 import { onMounted, reactive } from 'vue';
 import movies from '../mock/movies.js';
 import MovieCard from './MovieCard.vue';
-import { IMovie } from '../interface/IMovie';
+import { IMovie } from '../interface';
 
 const data = reactive({
   movies: [] as Array<IMovie>,

@@ -18,15 +18,21 @@
   </section>
 </template>
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { defineEmits, reactive } from 'vue';
 import SearchItem from '@/components/SearchItem.vue';
 import ToggleSwitch from '@/components/ToggleSwitch.vue';
+import { SearchBy } from '@/interface';
 
 const data = reactive({
   isChecked: false,
 });
 
+const emit = defineEmits(['update:modelValue']);
 const handlerSearchSubmit = function (value: string) {
-  alert(`${value}, ${data.isChecked}`);
+  const searchBy = data.isChecked ? SearchBy.Genre : SearchBy.Title;
+  emit('update:modelValue', {
+    searchValue: value,
+    searchBy: searchBy,
+  });
 };
 </script>
