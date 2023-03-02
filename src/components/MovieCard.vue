@@ -8,11 +8,10 @@
     <div>
       {{ genreList }}
     </div>
-    <a
+    <router-link
       class="net-movie-cart__details"
-      :href="pathToMovieDetails"
-      @click.prevent
-    ></a>
+      :to="pathToMovieDetails"
+    ></router-link>
   </section>
 </template>
 <script setup lang="ts">
