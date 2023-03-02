@@ -1,7 +1,6 @@
 <template>
   <FindMovieSection v-model="data.searchData" />
-  {{ data.searchData.searchValue }}, {{ data.searchData.searchBy }}
-  <ResultsSection />
+  <ResultsSection v-bind="data.searchData" />
 </template>
 <script setup lang="ts">
 import ResultsSection from '../components/ResultsSection.vue';

@@ -3,17 +3,45 @@
     <div class="net-movie-list__no-films" v-if="!data.movies.length">
       No films found
     </div>
-    <MovieCard v-for="movie in data.movies" v-bind="movie" :key="movie.id" />
+    <MovieCard v-for="movie in filteredMovies" v-bind="movie" :key="movie.id" />
   </section>
 </template>
 <script setup lang="ts">
-import { onMounted, reactive } from 'vue';
+import { computed, defineProps, onMounted, reactive } from 'vue';
 import movies from '../mock/movies.js';
 import MovieCard from './MovieCard.vue';
-import { IMovie } from '../interface';
+import { IMovie, SearchBy } from '@/interface';
+
+const props = defineProps({
+  searchValue: {
+    type: String,
+    defaultValue: '',
+  },
+  searchBy: Number,
+});
 
 const data = reactive({
   movies: [] as Array<IMovie>,
+});
+
+const filteredMovies = computed(() => {
+  const searchBy: SearchBy = props.searchBy as SearchBy;
+  return data.movies.filter((movie) => {
+    if (searchBy === SearchBy.Title) {
+      return (
+        movie.title
+          .toLowerCase()
+          .indexOf((props.searchValue || '').toLowerCase()) != -1
+      );
+    } else {
+      return (
+        movie.genres
+          .join(' ')
+          .toLowerCase()
+          .indexOf((props.searchValue || '').toLowerCase()) != -1
+      );
+    }
+  });
 });
 
 onMounted(() => {
