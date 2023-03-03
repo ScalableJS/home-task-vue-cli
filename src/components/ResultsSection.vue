@@ -31,7 +31,6 @@ const data = reactive({
 });
 
 const filteredMovies = computed(() => {
-  console.log(123, props.searchValue);
   const searchValue = props.searchValue ?? '';
   if (props.searchBy ?? 0 === SearchBy.Title) {
     return store.getters.filteredMoviesByTitle(searchValue);
