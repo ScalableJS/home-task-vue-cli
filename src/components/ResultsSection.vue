@@ -16,11 +16,11 @@ import { useStore } from 'vuex';
 const props = defineProps({
   searchValue: {
     type: String,
-    defaultValue: '',
+    default: '',
   },
   searchBy: {
     type: Number,
-    defaultValue: 0,
+    default: 0,
   },
 });
 
@@ -31,23 +31,13 @@ const data = reactive({
 });
 
 const filteredMovies = computed(() => {
-  const searchBy: SearchBy = props.searchBy ?? 0;
-  return data.movies.filter((movie) => {
-    if (searchBy === SearchBy.Title) {
-      return (
-        movie.title
-          .toLowerCase()
-          .indexOf((props.searchValue || '').toLowerCase()) != -1
-      );
-    } else {
-      return (
-        movie.genres
-          .join(' ')
-          .toLowerCase()
-          .indexOf((props.searchValue || '').toLowerCase()) != -1
-      );
-    }
-  });
+  console.log(123, props.searchValue);
+  const searchValue = props.searchValue ?? '';
+  if (props.searchBy ?? 0 === SearchBy.Title) {
+    return store.getters.filteredMoviesByTitle(searchValue);
+  } else {
+    return store.getters.filteredMoviesByGenre(searchValue);
+  }
 });
 
 onMounted(() => {
