@@ -15,7 +15,12 @@ export default createRouter({
     {
       path: '/movie-details/:movieId',
       component: MovieDetailsPage,
-      props: true,
+      props: (route) => {
+        return {
+          ...route.params,
+          ...{ movieId: Number(route.params.movieId) },
+        };
+      },
     },
     {
       path: '/:catchAll(.*)',
