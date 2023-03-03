@@ -41,5 +41,4 @@ const handlerSearchSubmit = function (value: string) {
   background: #232323;
   padding: 40px;
 }
-
 </style>
