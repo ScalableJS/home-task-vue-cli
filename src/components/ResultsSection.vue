@@ -11,6 +11,7 @@ import { computed, defineProps, onMounted, reactive } from 'vue';
 import movies from '../mock/movies.js';
 import MovieCard from './MovieCard.vue';
 import { IMovie, SearchBy } from '@/interface';
+import { useStore } from 'vuex';
 
 const props = defineProps({
   searchValue: {
@@ -22,6 +23,8 @@ const props = defineProps({
     defaultValue: 0,
   },
 });
+
+const store = useStore();
 
 const data = reactive({
   movies: [] as Array<IMovie>,
@@ -49,7 +52,7 @@ const filteredMovies = computed(() => {
 
 onMounted(() => {
   setTimeout(() => {
-    data.movies = movies;
+    data.movies = store.state.movies;
   }, 1e3);
 });
 </script>
