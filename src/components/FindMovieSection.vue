@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="net-find-your-movie">
     <h2>FIND YOUR MOVIE</h2>
     <SearchItem
       primary="true"
@@ -36,3 +36,10 @@ const handlerSearchSubmit = function (value: string) {
   });
 };
 </script>
+<style scoped lang="scss">
+.net-find-your-movie {
+  background: #232323;
+  padding: 40px;
+}
+
+</style>
