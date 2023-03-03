@@ -6,7 +6,7 @@
       page.
     </p>
     <router-link to="/">
-      <ButtonItem label="Netflix Home" primary="true" />
+      <ButtonItem label="Netflix Home" :primary="true" />
     </router-link>
   </div>
 </template>

@@ -5,7 +5,7 @@
       label="SORT BY"
       label-a="RELEASE DATE"
       label-b="RATING"
-      primary="true"
+      :primary="true"
     />
   </div>
   <ResultsSection v-bind="data.searchData" />

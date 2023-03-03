@@ -6,14 +6,17 @@
 import { defineProps, computed } from 'vue';
 import ResultsSection from '../components/ResultsSection.vue';
 import MovieDetails from '../components/MovieDetails.vue';
-import movies from '../mock/movies.js';
+import { useStore } from 'vuex';
+import { IMovie } from '@/interface';
 
 const props = defineProps({
   movieId: Number,
 });
 
+const store = useStore();
+
 const movieDetails = computed(() => {
-  return movies.find((movie) => {
+  return store.state.movies.find((movie: IMovie) => {
     return movie.id === Number(props.movieId);
   });
 });

@@ -2,14 +2,14 @@
   <section class="net-find-your-movie">
     <h2>FIND YOUR MOVIE</h2>
     <SearchItem
-      primary="true"
+      :primary="true"
       label="SEARCH"
       size="large"
       @submit="handlerSearchSubmit"
     />
     <br />
     <ToggleSwitch
-      primary="true"
+      :primary="true"
       label="SEARCH BY"
       labelA="TITLE"
       labelB="GENRE"
