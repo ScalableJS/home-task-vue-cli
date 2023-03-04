@@ -4,31 +4,38 @@ import movies from '../mock/movies';
 
 export default createStore({
   state: {
-    movies: movies,
+    movies: [] as Array<IMovie>,
   },
   getters: {
     movieDetails: (state) => (movieId: number) => {
-      return state.movies.find((movie: IMovie) => {
-        return movie.id === movieId;
-      });
+      return state.movies.find((movie: IMovie) => movie.id === movieId);
     },
     filteredMoviesByTitle: (state) => (searchValue: string) => {
       const searchValueLowerCased = searchValue.toLowerCase();
-      return state.movies.filter((movie: IMovie) => {
-        return movie.title.toLowerCase().indexOf(searchValueLowerCased) != -1;
+      return state.movies.filter(({ title }) => {
+        return title.toLowerCase().indexOf(searchValueLowerCased) != -1;
       });
     },
     filteredMoviesByGenre: (state) => (searchValue: string) => {
       const searchValueLowerCased = searchValue.toLowerCase();
-      return state.movies.filter((movie: IMovie) => {
+      return state.movies.filter(({ genres }) => {
         return (
-          movie.genres.join(' ').toLowerCase().indexOf(searchValueLowerCased) !=
-          -1
+          genres.join(' ').toLowerCase().indexOf(searchValueLowerCased) != -1
         );
       });
     },
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    updateProductsData(state, movies) {
+      state.movies = movies;
+    },
+  },
+  actions: {
+    fetchMovies: ({ commit }) => {
+      setTimeout(() => {
+        commit('updateProductsData', movies);
+      }, 1e3);
+    },
+  },
   modules: {},
 });

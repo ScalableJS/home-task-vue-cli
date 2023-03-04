@@ -11,4 +11,11 @@
 </template>
 <script setup lang="ts">
 import LogoItem from './components/LogoItem.vue';
+import { onMounted } from 'vue';
+import { useStore } from 'vuex';
+
+const store = useStore();
+onMounted(() => {
+  store.dispatch('fetchMovies');
+});
 </script>
