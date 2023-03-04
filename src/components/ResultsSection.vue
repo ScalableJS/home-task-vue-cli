@@ -7,8 +7,7 @@
   </section>
 </template>
 <script setup lang="ts">
-import { computed, defineProps, onMounted, reactive } from 'vue';
-import movies from '../mock/movies.js';
+import { computed, defineProps, onMounted, reactive, ref } from 'vue';
 import MovieCard from './MovieCard.vue';
 import { IMovie, SearchBy } from '@/interface';
 import { useStore } from 'vuex';
@@ -28,21 +27,15 @@ const store = useStore();
 
 const data = reactive({
   movies: [] as Array<IMovie>,
+  searchValue: props.searchValue,
 });
 
 const filteredMovies = computed(() => {
-  const searchValue = props.searchValue ?? '';
-  if (props.searchBy ?? 0 === SearchBy.Title) {
-    return store.getters.filteredMoviesByTitle(searchValue);
+  if (props.searchBy === SearchBy.Title) {
+    return store.getters.filteredMoviesByTitle(data.searchValue);
   } else {
-    return store.getters.filteredMoviesByGenre(searchValue);
+    return store.getters.filteredMoviesByGenre(data.searchValue);
   }
-});
-
-onMounted(() => {
-  setTimeout(() => {
-    data.movies = store.state.movies;
-  }, 1e3);
 });
 </script>
 

@@ -20,21 +20,24 @@
 </template>
 <script setup lang="ts">
 // Vue + typescript does not support import for defineProps
-import { computed, defineProps } from 'vue';
+import { computed, defineProps, withDefaults } from 'vue';
 
 interface IMovie {
   id: number;
   posterPath: string;
   title: string;
-  releaseDate: string;
-  genres: Array<string>;
+  releaseDate?: string;
+  genres?: Array<string>;
   description: string;
   runtime: number;
   rating: number;
   tagline: string;
 }
 
-const props = defineProps<IMovie>();
+const props = withDefaults(defineProps<IMovie>(), {
+  releaseDate: '',
+  genres: () => [],
+});
 
 const releaseDateYear = computed(() => {
   return props.releaseDate.split('-')[0];

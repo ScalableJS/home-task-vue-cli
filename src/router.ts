@@ -10,7 +10,13 @@ export default createRouter({
     {
       path: '/search',
       component: HomePage,
-      props: true,
+      props: (route) => {
+        return {
+          ...route.params,
+          searchValue: route.query.sv,
+          searchBy: Number(route.query.sb),
+        };
+      },
     },
     {
       path: '/movie-details/:movieId',

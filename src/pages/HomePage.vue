@@ -13,20 +13,27 @@
 <script setup lang="ts">
 import ResultsSection from '../components/ResultsSection.vue';
 import FindMovieSection from '../components/FindMovieSection.vue';
-import { reactive, watch } from 'vue';
+import { defineProps, reactive, watch } from 'vue';
 import router from '../router';
-import { useRoute } from 'vue-router';
 import ToggleSwitch from '@/components/ToggleSwitch.vue';
 
-const route = useRoute();
-
-const data = reactive({
-  searchData: {
-    searchValue: route.query.sv,
-    searchBy: Number(route.query.sb) || 0,
+const props = defineProps({
+  searchValue: {
+    type: String,
+    default: '',
+  },
+  searchBy: {
+    type: Number,
+    default: 0,
   },
 });
 
+const data = reactive({
+  searchData: {
+    searchValue: props.searchValue,
+    searchBy: props.searchBy,
+  },
+});
 watch(
   () => data.searchData,
   (data) => {
