@@ -7,7 +7,7 @@
   </section>
 </template>
 <script setup lang="ts">
-import { computed, defineProps, onMounted, reactive, ref } from 'vue';
+import { computed, defineProps, reactive } from 'vue';
 import MovieCard from './MovieCard.vue';
 import { IMovie, SearchBy } from '@/interface';
 import { useStore } from 'vuex';
