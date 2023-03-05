@@ -11,6 +11,11 @@ export const enum SearchBy {
   Genre,
 }
 
+export const enum SortBy {
+  ReleaseDate,
+  Rating,
+}
+
 export interface ISearchData {
   searchValue: string;
   searchBy: SearchBy;
