@@ -1,10 +1,14 @@
 import { createStore } from 'vuex';
-import { IMovie, SearchBy } from '@/interface';
+import { IMovie, SearchBy, SortBy } from '@/interface';
 import movies from '../mock/movies';
 
 export default createStore({
+  strict: true,
   state: {
     movies: [] as Array<IMovie>,
+    searchValue: String,
+    searchBy: SearchBy.Title,
+    sortBy: SortBy.ReleaseDate,
   },
   getters: {
     movieDetails: (state) => (movieId: number) => {

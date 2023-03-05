@@ -7,9 +7,9 @@
   </section>
 </template>
 <script setup lang="ts">
-import { computed, defineProps, reactive } from 'vue';
+import { computed, defineProps } from 'vue';
 import MovieCard from './MovieCard.vue';
-import { IMovie, SearchBy } from '@/interface';
+import { SearchBy } from '@/interface';
 import { useStore } from 'vuex';
 
 const props = defineProps({
@@ -25,16 +25,11 @@ const props = defineProps({
 
 const store = useStore();
 
-const data = reactive({
-  movies: [] as Array<IMovie>,
-  searchValue: props.searchValue,
-});
-
 const filteredMovies = computed(() => {
   if (props.searchBy === SearchBy.Title) {
-    return store.getters.filteredMoviesByTitle(data.searchValue);
+    return store.getters.filteredMoviesByTitle(props.searchValue);
   } else {
-    return store.getters.filteredMoviesByGenre(data.searchValue);
+    return store.getters.filteredMoviesByGenre(props.searchValue);
   }
 });
 </script>
