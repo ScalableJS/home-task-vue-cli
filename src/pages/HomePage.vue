@@ -1,5 +1,5 @@
 <template>
-  <FindMovieSection v-model="data.searchData" />
+  <FindMovieSection v-model="searchData" @update:modelValue="onUpdate" />
   <div class="net-sort-by">
     <ToggleSwitch
       label="SORT BY"
@@ -9,7 +9,7 @@
       v-model="data.sortBy"
     />
   </div>
-  <ResultsSection :searchValue="d.searchValue" :searchB="d.searchBy" />
+  <ResultsSection v-bind="props" />
 </template>
 <script setup lang="ts">
 import ResultsSection from '../components/ResultsSection.vue';
@@ -34,28 +34,21 @@ const props = defineProps({
   },
 });
 
-const d = reactive(props);
-
-const data = reactive({
-  searchData: {
-    searchValue: props.searchValue,
-    searchBy: props.searchBy,
-  },
+const searchData = reactive({
+  searchValue: props.searchValue,
+  searchBy: props.searchBy,
   sortBy: Boolean(props.sortBy),
 });
 
-watch(
-  () => data.searchData,
-  (data) => {
-    router.push({
-      path: 'search',
-      query: {
-        sv: data.searchValue,
-        sb: data.searchBy,
-      },
-    });
-  }
-);
+const onUpdate = function (data) {
+  router.push({
+    path: 'search',
+    query: {
+      sv: data.searchValue,
+      sb: data.searchBy,
+    },
+  });
+};
 </script>
 <style scoped lang="scss">
 .net-sort-by {

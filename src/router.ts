@@ -14,7 +14,7 @@ export default createRouter({
         return {
           ...route.params,
           searchValue: route.query.sv,
-          searchBy: Number(route.query.sb),
+          searchBy: Number(route.query.sb ?? 0),
         };
       },
     },
