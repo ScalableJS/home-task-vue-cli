@@ -1,7 +1,11 @@
 <template>
   <section class="net-movie-cart">
     <div class="net-movie-cart__img-wrapper">
-      <img :src="props.posterPath" alt="poster" />
+      <ImageItem
+        class="article-item__image"
+        :source="props.posterPath"
+        alt="Poster"
+      />
     </div>
     <h3>{{ props.title }}</h3>
     <time datatype="{{props.releaseDate}}">{{ releaseDateYear }}</time>
@@ -16,10 +20,11 @@
 </template>
 <script setup lang="ts">
 import { computed, defineProps } from 'vue';
+import ImageItem from './ImageItem';
 
 // Vue + typescript does not support import for defineProps
 interface IMovie {
-  id: number;
+  id?: number;
   posterPath: string;
   title: string;
   releaseDate: string;
