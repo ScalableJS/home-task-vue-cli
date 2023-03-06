@@ -6,8 +6,9 @@ import NotFoundPage from './pages/NotFoundPage.vue';
 export default createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/', component: HomePage },
+    { name: 'home', path: '/', component: HomePage },
     {
+      name: 'search',
       path: '/search',
       component: HomePage,
       props: (route) => {
@@ -15,6 +16,7 @@ export default createRouter({
           ...route.params,
           searchValue: route.query.sv,
           searchBy: Number(route.query.sb ?? 0),
+          sortBy: Number(route.query.sort ?? 0),
         };
       },
     },

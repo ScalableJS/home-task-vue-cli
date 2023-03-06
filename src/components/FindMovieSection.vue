@@ -5,6 +5,7 @@
       :primary="true"
       label="SEARCH"
       size="large"
+      :searchValue="data.searchValue"
       @submit="handlerSearchSubmit"
     />
     <br />
@@ -18,13 +19,19 @@
   </section>
 </template>
 <script setup lang="ts">
-import { defineEmits, reactive } from 'vue';
+import { defineEmits, reactive, defineProps } from 'vue';
 import SearchItem from '@/components/SearchItem.vue';
 import ToggleSwitch from '@/components/ToggleSwitch.vue';
 import { SearchBy } from '@/interface';
 
+const props = defineProps({
+  searchValue: String,
+  searchBy: Number,
+});
+
 const data = reactive({
-  isChecked: false,
+  searchValue: props.searchValue,
+  isChecked: Boolean(props.searchBy),
 });
 
 const emit = defineEmits(['update:modelValue']);

@@ -4,6 +4,7 @@ export interface IMovie {
   title: string;
   releaseDate: string;
   genres: Array<string>;
+  rating: number;
 }
 
 export const enum SearchBy {
