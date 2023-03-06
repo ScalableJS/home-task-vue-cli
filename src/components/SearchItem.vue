@@ -11,6 +11,10 @@ import Input from './InputItem.vue';
 import Button from './ButtonItem.vue';
 
 const props = defineProps({
+  searchValue: {
+    type: String,
+    default: '',
+  },
   label: {
     type: String,
     required: true,
@@ -30,7 +34,7 @@ const props = defineProps({
 });
 
 const data = reactive({
-  searchValue: '',
+  searchValue: props.searchValue,
 });
 
 const emit = defineEmits<{

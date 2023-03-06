@@ -21,15 +21,19 @@ const props = defineProps({
     type: Number,
     default: 0,
   },
+  sortBy: {
+    type: [Number, Boolean],
+    default: 0,
+  },
 });
 
 const store = useStore();
 
 const filteredMovies = computed(() => {
   if (props.searchBy === SearchBy.Title) {
-    return store.getters.filteredMoviesByTitle(props.searchValue);
+    return store.getters.filteredMoviesByTitle(props.searchValue, props.sortBy);
   } else {
-    return store.getters.filteredMoviesByGenre(props.searchValue);
+    return store.getters.filteredMoviesByGenre(props.searchValue, props.sortBy);
   }
 });
 </script>
