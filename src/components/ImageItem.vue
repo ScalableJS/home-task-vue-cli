@@ -24,6 +24,7 @@ const props = defineProps({
     justify-content: center;
     align-items: center;
     border-radius: 4px;
+    margin: 0;
 
     &.loaded {
       .image {
