@@ -50,6 +50,8 @@ const genreList = computed(() => {
 .net-movie-details {
   display: flex;
   gap: 20px;
+  background: #232323;
+  padding: 40px;
 }
 
 .net-movie-details__img-wrapper {

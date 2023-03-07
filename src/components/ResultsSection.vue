@@ -1,40 +1,22 @@
 <template>
   <section class="net-movie-list">
-    <div class="net-movie-list__no-films" v-if="!filteredMovies.length">
+    <div class="net-movie-list__no-films" v-if="!movies.length">
       No films found
     </div>
-    <MovieCard v-for="movie in filteredMovies" v-bind="movie" :key="movie.id" />
+    <MovieCard v-for="movie in movies" v-bind="movie" :key="movie.id" />
   </section>
 </template>
 <script setup lang="ts">
-import { computed, defineProps } from 'vue';
 import MovieCard from './MovieCard.vue';
-import { SearchBy } from '@/interface';
-import { useStore } from 'vuex';
+import { IMovie } from '@/interface';
+import { defineProps, PropType } from 'vue';
 
 const props = defineProps({
-  searchValue: {
-    type: String,
-    default: '',
+  movies: {
+    type: Array as PropType<IMovie[]>,
+    required: true,
+    default: () => [],
   },
-  searchBy: {
-    type: Number,
-    default: 0,
-  },
-  sortBy: {
-    type: [Number, Boolean],
-    default: 0,
-  },
-});
-
-const store = useStore();
-
-const filteredMovies = computed(() => {
-  if (props.searchBy === SearchBy.Title) {
-    return store.getters.filteredMoviesByTitle(props.searchValue, props.sortBy);
-  } else {
-    return store.getters.filteredMoviesByGenre(props.searchValue, props.sortBy);
-  }
 });
 </script>
 
