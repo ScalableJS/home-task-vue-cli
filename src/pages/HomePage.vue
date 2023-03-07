@@ -4,22 +4,25 @@
     :searchBy="searchBy"
     @update:modelValue="onUpdateFindMovieSection"
   />
-  <div class="net-sort-by">
-    <ToggleSwitch
-      label="SORT BY"
-      label-a="RELEASE DATE"
-      label-b="RATING"
-      :primary="true"
-      :sortBy="sortBy"
-      @update:modelValue="onUpdateSortBy"
-    />
+  <div class="net-header-result">
+    <div class="net-movie-found">{{ filteredMovies.length }} movie found</div>
+    <div class="net-sort-by">
+      <ToggleSwitch
+        label="SORT BY"
+        label-a="RELEASE DATE"
+        label-b="RATING"
+        :primary="true"
+        :sortBy="sortBy"
+        @update:modelValue="onUpdateSortBy"
+      />
+    </div>
   </div>
-  <ResultsSection v-bind="props" />
+  <ResultsSection :movies="filteredMovies" />
 </template>
 <script setup lang="ts">
 import ResultsSection from '../components/ResultsSection.vue';
 import FindMovieSection from '../components/FindMovieSection.vue';
-import { defineProps, onMounted } from 'vue';
+import { computed, defineProps, onMounted } from 'vue';
 import router from '../router';
 import ToggleSwitch from '@/components/ToggleSwitch.vue';
 import { SearchBy, SortBy } from '@/interface';
@@ -92,12 +95,24 @@ onMounted(() => {
     updateSearchData({});
   }
 });
+
+const filteredMovies = computed(() => {
+  if (props.searchBy === SearchBy.Title) {
+    return store.getters.filteredMoviesByTitle(props.searchValue, props.sortBy);
+  } else {
+    return store.getters.filteredMoviesByGenre(props.searchValue, props.sortBy);
+  }
+});
 </script>
 <style scoped lang="scss">
-.net-sort-by {
+.net-header-result {
   margin-top: 20px;
-  margin-right: 40px;
   display: flex;
-  justify-content: end;
+  align-items: center;
+  padding: 0 40px;
+}
+
+.net-sort-by {
+  margin-left: auto;
 }
 </style>
