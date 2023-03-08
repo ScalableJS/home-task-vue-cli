@@ -1,6 +1,7 @@
 import { createStore } from 'vuex';
 import { IMovie, SearchBy, SortBy } from '@/interface';
 import movies from '../mock/movies';
+import { useFetch } from '@/composition/useFetch';
 
 export default createStore({
   strict: true,
@@ -69,10 +70,23 @@ export default createStore({
     updateSearchData: ({ commit }, searchData) => {
       commit('updateSearchData', searchData);
     },
-    fetchMovies: ({ commit }) => {
-      setTimeout(() => {
-        commit('updateProductsData', movies);
-      }, 1e3);
+    fetchMovies: async ({ commit }) => {
+      const { data } = await useFetch<any[]>(
+        'https://tame-erin-pike-toga.cyclic.app/movies'
+      );
+
+      // normalize response
+      const movies = data.value?.map((item) => {
+        return {
+          id: item.id,
+          posterPath: item.posterurl,
+          title: item.title,
+          releaseDate: item.releaseDate,
+          genres: item.genres,
+          rating: item.imdbRating,
+        };
+      });
+      commit('updateProductsData', movies);
     },
   },
   modules: {},
